@@ -1,0 +1,20 @@
+from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        dict_s = Counter(s)
+
+        for l in t:
+            if not dict_s[l]:
+                return False
+            
+            if dict_s[l] < 0:
+                return False
+            
+            dict_s[l] -= 1
+
+        return all(num ==0 for num in dict_s.values())
+        
